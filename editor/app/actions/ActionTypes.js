@@ -1,0 +1,3 @@
+
+export const SET_FILE_SYSTEM = "SET_FILE_SYSTEM";
+export const TOGGLE_FILE_CHECK = "TOGGLE_FILE_CHECK";

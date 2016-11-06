@@ -1,0 +1,31 @@
+html,body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+body {
+	background-color: #cccccc;
+}
+
+.pull-left {
+	float: left !important;
+}
+
+.clearfix {
+    zoom: 1;
+    &:after {
+        content:"";
+        clear:both;
+        overflow:hidden;
+        display: block;
+        visibility: hidden;
+        height: 0;
+        line-height: 0;
+    }
+    &:before {
+        content:"";
+        display:table;
+    }
+}
+
+.c-fff { background-color: #ffffff }
