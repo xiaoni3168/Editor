@@ -1,7 +1,15 @@
+var os = require('os');
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+
+var IPv4;
+for(var i=0;i<os.networkInterfaces().en0.length;i++){
+    if(os.networkInterfaces().en0[i].family=='IPv4'){
+        IPv4=os.networkInterfaces().en0[i].address;
+    }
+}
 
 module.exports = {
 	entry: {
@@ -75,7 +83,7 @@ module.exports = {
 		port: 8000,
 		proxy: {
             '/api/*': {
-                target: 'http://192.168.2.106:10999',
+                target: 'http://' + IPv4 + ':10999',
                 secure: true,
                 changeOrigin: true,
                 xfwd: true,
