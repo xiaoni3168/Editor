@@ -1,7 +1,8 @@
 import * as Types from '../actions/ActionTypes';
 
 const initialState = {
-	fileSystem: []
+	fileSystem: [],
+	fileTabs: []
 }
 
 export default function editor(state = initialState, action) {
@@ -23,7 +24,24 @@ export default function editor(state = initialState, action) {
 						})
 					}
 				})
-			})
+			});
+		case Types.ADD_FILE_TABS:
+			return Object.assign({}, state, {
+				fileTabs: [
+					...state.fileTabs,
+					action.file
+				]
+			});
+		case Types.REMOVE_FILE_TABS:
+			let arr = [];
+			state.fileTabs.map((file) => {
+				if(file.path !== action.file.path) {
+					arr.push(file);
+				}
+			});
+			return Object.assign({}, state, {
+				fileTabs: arr
+			});
 		default:
 			return state;
 	}

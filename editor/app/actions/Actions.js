@@ -13,3 +13,17 @@ export function toggleFileCheck(file) {
 		file
 	}
 }
+
+export function addFileTabs(file) {
+	return {
+		type: Types.ADD_FILE_TABS,
+		file
+	}
+}
+
+export function removeFileTabs(file) {
+	return {
+		type: Types.REMOVE_FILE_TABS,
+		file
+	}
+}

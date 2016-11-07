@@ -3,6 +3,8 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var precss = require('precss');
+var autoprefixer = require('autoprefixer');
 
 var IPv4;
 for(var i=0;i<os.networkInterfaces().en0.length;i++){
@@ -71,6 +73,9 @@ module.exports = {
 	],
 	node: {
 		__dirname: true
+	},
+	postcss: function() {
+		return [autoprefixer({browsers: ['last 10 versions']}), precss];
 	},
 	debug: true,
     devtool: 'eval-source-map',

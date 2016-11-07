@@ -1,0 +1,30 @@
+.svg {
+    &.sm {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    &.image {
+        background: url(./image.svg);
+    }
+    &.default {
+        background: url(./default.svg);
+    }
+    &.html {
+        background: url(./html.svg);
+    }
+    &.css {
+        background: url(./css.svg);
+    }
+    &.sass {
+        background: url(./sass.svg);
+    }
+    &.js {
+        background: url(./js_erb.svg);
+    }
+    &.json {
+        background: url(./json.svg);
+    }
+}

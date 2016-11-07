@@ -1,0 +1,39 @@
+
+.file-viewer {
+    .viewer-tabs {
+        height: 30px;
+        box-shadow: 0px 0px 0.5px 0 #333333;
+        .tab {
+            height: 100%;
+            float: left;
+            cursor: default;
+            background-color: #333333;
+            color: #ffffff;
+            border-bottom: 3px solid #19a068;
+            box-sizing: border-box;
+            border-left: 1px solid #000000;
+            &:first-child {
+                border-left: none;
+            }
+            .tab-head {
+                height: 100%;
+                font-size: 12px;
+                line-height: 30px;
+                .svg {
+                    margin-top: -2px;
+                }
+                .fa {
+                    margin: 0 10px;
+                    height: 100%;
+                    line-height: 30px;
+                }
+                .name {
+                    max-width: 100px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}

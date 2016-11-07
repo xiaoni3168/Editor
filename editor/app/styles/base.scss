@@ -6,11 +6,20 @@ html,body {
 body {
 	background-color: #cccccc;
 }
+div#root,
+div[data-reactroot],
+.rootPage {
+	height: 100%;
+}
 
 .pull-left {
 	float: left !important;
 }
-
+.pull-right {
+	float: right !important;
+}
+.h-100 { height: 100% !important; }
+.w-100 { width: 100% !important; }
 .clearfix {
     zoom: 1;
     &:after {

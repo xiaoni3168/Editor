@@ -22,6 +22,19 @@ export default class ToolBar extends Component {
 		}
 	}
 
+	clear() {
+		this.setState({
+			orignalPath: 'nirui',
+			filePath: 'nirui',
+			lastFilePath: [],
+			showAbout: false,
+			openFileOptionPanel: false,
+			showFileChose: false,
+			showHiddenFile: false,
+			loadingFileSystem: false
+		})
+	}
+
 	toggleFileOptionPanel() {
 		this.setState({ openFileOptionPanel: !this.state.openFileOptionPanel });
 	}
@@ -64,6 +77,11 @@ export default class ToolBar extends Component {
 								<span className={ classnames('fa', 'fa-check-square', {'checked': this.state.showHiddenFile}) }></span>
 							</div>
 						</Hammer>
+						<div className="list-style pull-right clearfix">
+							<span className="fa fa-th-large"></span>
+							<span className="fa fa-th-list"></span>
+							<span className="fa fa-align-justify"></span>
+						</div>
 					</div>
 					<Hammer onSwipe={ ()=> {
 			            		if(this.state.filePath != this.state.orignalPath) {
@@ -71,7 +89,7 @@ export default class ToolBar extends Component {
 			            			this.openFileChose(path);
 			            			this.setState({ filePath: path });
 			            		}
-			            	} } 
+			            	} }
 	            			direction="DIRECTION_RIGHT">
 					<div className="content-wrap">
 						<ReactIScroll
@@ -96,9 +114,17 @@ export default class ToolBar extends Component {
 															this.state.lastFilePath.push(this.state.filePath);
 															this.setState({ filePath: this.state.filePath + '/' + file.name });
 														}
+														if(file.isFile) {
+															actions.addFileTabs({
+																name: file.name,
+																path: this.state.filePath + '/' + file.name,
+																suffix: file.isHidden?'':file.name.substr(file.name.lastIndexOf('.')+1, file.name.length)
+															});
+															this.clear();
+														}
 													} }>
 												<div className={ classnames('file-item', {
-														'hidden-file': file.isHidden, 
+														'hidden-file': file.isHidden,
 														'hidden': !this.state.showHiddenFile&&file.isHidden,
 														'checked': file.checked
 													 }) }>
@@ -119,7 +145,7 @@ export default class ToolBar extends Component {
 					</div>
 					<div className="file-chose-footer">
 						<div className="op open">open</div>
-						<Hammer onTap={ () => { this.setState({ showFileChose: false }) } }>
+						<Hammer onTap={ () => { this.clear(); } }>
 							<div className="op cancel">cancel</div>
 						</Hammer>
 					</div>
