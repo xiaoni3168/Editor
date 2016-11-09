@@ -46,7 +46,8 @@ class RootPage extends Component {
 					})()
 				}
 				<FileViewer editor={ editor }
-							actions={ actions }>
+							actions={ actions }
+							http={ httpActions }>
 				</FileViewer>
 				</div>
 			</div>

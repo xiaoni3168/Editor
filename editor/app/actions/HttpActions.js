@@ -5,3 +5,9 @@ export function getFileRoot(home) {
 		return API.getFileRoot(home);
 	}
 }
+
+export function getImageFile(path) {
+	return function(dispatch) {
+		return API.getImageFile(path);
+	}
+}

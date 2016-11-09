@@ -17,8 +17,18 @@ export default class FileViewer extends Component {
                 css: ['css'],
                 sass: ['scss'],
                 js: ['js'],
-                json: ['json']
+                json: ['json'],
+                markdown: ['md']
             }
+        }
+    }
+
+    componentDidUpdate() {
+        const { http, editor, actions } = this.props;
+        if(editor.activeTab.path&&!editor.base64Image) {
+            http.getImageFile(editor.activeTab.path).then((response) => {
+                actions.setImageViewerFile('data:image/png;base64,' + response.data);
+            })
         }
     }
 
@@ -34,7 +44,7 @@ export default class FileViewer extends Component {
 
     checkFileSuffix(suffix) {
         for(let [key, value] of Object.entries(this.state.fileSuffix)) {
-            if(this._inArray(value, suffix)) {
+            if(this._inArray(value, suffix.toLowerCase())) {
                 return key;
             }
         }
@@ -48,7 +58,7 @@ export default class FileViewer extends Component {
 
     render() {
         const that = this;
-        const { editor } = this.props;
+        const { editor, http, rootState } = this.props;
         let Tabs = (
             <div className="viewer-tabs">
             {
@@ -67,11 +77,29 @@ export default class FileViewer extends Component {
                 })
             }
             </div>
+        );
+
+        let ImageContent = (
+            <div className="image-content">
+                <div></div>
+                <div className="viewer-wrap">
+                    <div className="image-size">
+                        <img src={ editor.base64Image } />
+                    </div>
+                </div>
+            </div>
+        )
+
+        let Content = (
+            <div className="viewer-content">
+                { ImageContent }
+            </div>
         )
 
         return (
             <div className="file-viewer h-100">
             { Tabs }
+            { Content }
             </div>
         )
     }

@@ -22,6 +22,18 @@ class Route {
 			});
 			res.send(result);
 		});
+		this._app.get('/file/image/*', function(req, res) {
+			var filePath = req.params[0];
+			var rootPath = '/Users/';
+			try {
+				var file = that._.fs.readFileSync(rootPath + filePath);
+				var base64 = new Buffer(file).toString('base64');
+				res.send(base64);
+			} catch (e) {
+				console.log(e);
+				res.send('File not found');
+			}
+		});
 	}
 
 	toString() {

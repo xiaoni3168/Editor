@@ -23,6 +23,7 @@ export default class ToolBar extends Component {
 	}
 
 	clear() {
+		const { actions } = this.props;
 		this.setState({
 			orignalPath: 'nirui',
 			filePath: 'nirui',
@@ -32,7 +33,8 @@ export default class ToolBar extends Component {
 			showFileChose: false,
 			showHiddenFile: false,
 			loadingFileSystem: false
-		})
+		});
+		actions.setFileSystem([]);
 	}
 
 	toggleFileOptionPanel() {
@@ -95,6 +97,8 @@ export default class ToolBar extends Component {
 						<ReactIScroll
 			                iScroll={iScroll}
 			                options={{
+								mouseWheel: true,
+								scrollX: true,
 			                    scrollbars: false,
 			                    preventDefault: true,
 			                    click: true
@@ -110,17 +114,22 @@ export default class ToolBar extends Component {
 													} }
 													onDoubleTap={ ()=> {
 														if(file.isDirectory) {
+															actions.setFileSystem([]);
 															this.openFileChose(this.state.filePath + '/' + file.name);
 															this.state.lastFilePath.push(this.state.filePath);
 															this.setState({ filePath: this.state.filePath + '/' + file.name });
 														}
 														if(file.isFile) {
-															actions.addFileTabs({
+															this.setState({showFileChose: false})
+															let tab = {
 																name: file.name,
 																path: this.state.filePath + '/' + file.name,
 																suffix: file.isHidden?'':file.name.substr(file.name.lastIndexOf('.')+1, file.name.length)
-															});
+															};
 															this.clear();
+															actions.addFileTabs(tab);
+															actions.setActiveTab(tab);
+															actions.setImageViewerFile(null);
 														}
 													} }>
 												<div className={ classnames('file-item', {
@@ -144,6 +153,7 @@ export default class ToolBar extends Component {
 						<span className="fa fa-cog fa-spin fa-3x fa-fw"></span>
 					</div>
 					<div className="file-chose-footer">
+						<div className="file-total">共{ editor.fileSystem.length }项内容</div>
 						<div className="op open">open</div>
 						<Hammer onTap={ () => { this.clear(); } }>
 							<div className="op cancel">cancel</div>

@@ -2,7 +2,9 @@ import * as Types from '../actions/ActionTypes';
 
 const initialState = {
 	fileSystem: [],
-	fileTabs: []
+	fileTabs: [],
+	activeTab: {},
+	base64Image: null
 }
 
 export default function editor(state = initialState, action) {
@@ -41,6 +43,14 @@ export default function editor(state = initialState, action) {
 			});
 			return Object.assign({}, state, {
 				fileTabs: arr
+			});
+		case Types.SET_ACTIVE_TAB:
+			return Object.assign({}, state, {
+				activeTab: action.tab
+			});
+		case Types.SET_IMAGE_VIEWER_FILE:
+			return Object.assign({}, state, {
+				base64Image: action.base64
 			});
 		default:
 			return state;

@@ -27,3 +27,17 @@ export function removeFileTabs(file) {
 		file
 	}
 }
+
+export function setActiveTab(tab) {
+	return {
+		type: Types.SET_ACTIVE_TAB,
+		tab
+	}
+}
+
+export function setImageViewerFile(base64) {
+	return {
+		type: Types.SET_IMAGE_VIEWER_FILE,
+		base64
+	}
+}
