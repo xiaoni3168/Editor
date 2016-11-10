@@ -130,6 +130,7 @@ export default class ToolBar extends Component {
 															actions.addFileTabs(tab);
 															actions.setActiveTab(tab);
 															actions.setImageViewerFile(null);
+															actions.setAudioPath(null);
 														}
 													} }>
 												<div className={ classnames('file-item', {

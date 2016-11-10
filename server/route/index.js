@@ -34,6 +34,17 @@ class Route {
 				res.send('File not found');
 			}
 		});
+		this._app.get('/file/audio/*', function(req, res) {
+			var filePath = req.params[0];
+			var rootPath = '/Users/';
+			try {
+				var file = that._.fs.readFileSync(rootPath + filePath);
+				res.sendFile(rootPath + filePath);
+			} catch (e) {
+				console.log(e);
+				res.send('File not found');
+			}
+		});
 	}
 
 	toString() {

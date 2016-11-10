@@ -4,7 +4,8 @@ const initialState = {
 	fileSystem: [],
 	fileTabs: [],
 	activeTab: {},
-	base64Image: null
+	base64Image: null,
+	audioPath: null
 }
 
 export default function editor(state = initialState, action) {
@@ -51,6 +52,10 @@ export default function editor(state = initialState, action) {
 		case Types.SET_IMAGE_VIEWER_FILE:
 			return Object.assign({}, state, {
 				base64Image: action.base64
+			});
+		case Types.SET_AUDIO_PATH:
+			return Object.assign({}, state, {
+				audioPath: action.audioPath
 			});
 		default:
 			return state;

@@ -5,3 +5,4 @@ export const ADD_FILE_TABS = "ADD_FILE_TABS";
 export const REMOVE_FILE_TABS = "REMOVE_FILE_TABS";
 export const SET_ACTIVE_TAB = "SET_ACTIVE_TAB";
 export const SET_IMAGE_VIEWER_FILE = "SET_IMAGE_VIEWER_FILE";
+export const SET_AUDIO_PATH = "SET_AUDIO_PATH";

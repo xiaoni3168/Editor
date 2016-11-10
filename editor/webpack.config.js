@@ -17,8 +17,9 @@ module.exports = {
 	entry: {
 		app: path.join(__dirname, 'app/index'),
 		vendors: [
-			'react', 
-			'react-dom', 
+            'babel-polyfill',
+			'react',
+			'react-dom',
 			'react-route',
 			'redux',
 			'react-redux',
@@ -52,7 +53,7 @@ module.exports = {
 				test: /\.css$/,
 				loaders: ['style?sourceMap', 'css?sourceMap']
 			},
-			{ 	test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/, 
+			{ 	test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
 				loader: 'url-loader?limit=500000&name=[path][name].[ext]'
 			}
 		]

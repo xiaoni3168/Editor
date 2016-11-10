@@ -41,3 +41,10 @@ export function setImageViewerFile(base64) {
 		base64
 	}
 }
+
+export function setAudioPath(audioPath) {
+	return {
+		type: Types.SET_AUDIO_PATH,
+		audioPath
+	}
+}
